@@ -1,10 +1,13 @@
-import { ProductService } from './../../core/Services/ProductService/product.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Product } from 'src/app/core/Models/product.model';
+
+import { ProductService } from './../../core/Services/ProductService/product.service';
+import { LoadingComponent } from '../../core/loading/loading.component';
 import { ProductCreateComponent } from '../product-create/product-create.component';
+import { Product } from 'src/app/core/Models/product.model';
 
 @Component({
   selector: 'app-product-index',
@@ -29,21 +32,26 @@ export class ProductIndexComponent implements OnInit {
       'imageUrl'
     ];
     
-  dataSource = new MatTableDataSource<Product>([]);
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+    dataSource = new MatTableDataSource<Product>([]);
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
+    constructor(
       private productService : ProductService,
-      private dialog : MatDialog) { }
+      private nuevoProductoDialog : MatDialog,
+      private cargandoDialog : MatDialog
+    ) { 
+        this.cargandoDialog.open(LoadingComponent);
+    }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(result => {
         this.dataSource.data = result.results
+        this.cargandoDialog.closeAll();
     })
     this.dataSource.paginator = this.paginator
   }
-  abrirDialogo(){
-    var dialogRef = this.dialog.open(ProductCreateComponent);
+  abrirDialogoNuevo(){
+    var nuevoProductoDialogRef = this.nuevoProductoDialog.open(ProductCreateComponent);
   }
 
 }

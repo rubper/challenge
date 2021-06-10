@@ -1,14 +1,98 @@
-<form>
+<mat-dialog-content>
+<form [formGroup]="productForm">
     <div>
-    <mat-form-field appearance="outline">
-        <mat-label>Input</mat-label>
-        <input matInput>
-    </mat-form-field>
+        <mat-error>
+            <ng-container *ngIf="brandControl.errors?.required">
+                La marca es requerida.
+            </ng-container>
+        </mat-error>
+        <mat-form-field appearance="outline">
+            <mat-label>Brand</mat-label>
+            <mat-select formControlName="brand">
+            <mat-option *ngFor="let marca of ListaMarcas" value="marca">{{marca.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
     <div>
-    <mat-form-field appearance="outline">
-        <mat-label>Textarea</mat-label>
-        <textarea matInput></textarea>
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+            <mat-option *ngFor="let categoria of ListaCategorias" value="categoria">{{categoria.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
+        <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Variations</mat-label>
+            <input matInput type="text" formControlName="variations">
+        </mat-form-field>
+    </div>
+        <div>
+        <mat-error>
+            <ng-container *ngIf="nameControl.errors?.required">
+                El nombre es requerido.
+            </ng-container>
+            <ng-container *ngIf="nameControl.errors?.minlength">
+                Debe ingresar al menos 5 caracteres.
+            </ng-container>
+        </mat-error>
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+    </div>
+        <div>
+        <mat-form-field appearance="outline">
+            <mat-label>CurrentPrice</mat-label>
+            <input matInput type="text" formControlName="currentPrice">
+        </mat-form-field>
+    </div>
+        <div>
+        <mat-form-field appearance="outline">
+            <mat-label>RawPrice</mat-label>
+            <input matInput type="text" formControlName="rawPrice">
+        </mat-form-field>
+    </div>
+        <div>
+        <mat-form-field appearance="outline">
+            <mat-label>LikesCount</mat-label>
+            <input matInput type="number" step="1" formControlName="likesCount">
+        </mat-form-field>
+    </div>
+        <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Discount</mat-label>
+            <input matInput  type="number" step="0.01" formControlName="discount">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-checkbox formControlName="isNew">IsNew</mat-checkbox>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Model</mat-label>
+            <input matInput type="text" formControlName="model">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Url</mat-label>
+            <input matInput type="text" formControlName="url">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>ImageUrl</mat-label>
+            <input matInput type="text" formControlName="imageUrl">
+        </mat-form-field>
+    </div>
+    <!--
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Textarea</mat-label>
+            <textarea matInput></textarea>
+        </mat-form-field>
+    </div>
+    -->
 </form>
+</mat-dialog-content>
