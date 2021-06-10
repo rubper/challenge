@@ -1,3 +1,4 @@
+import { LoadingComponent } from './../core/Components/loading/loading.component';
 import {MatTableModule} from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
-import { LoadingComponent } from './product-index/loading/loading.component';
 
 
 

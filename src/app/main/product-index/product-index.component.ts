@@ -1,3 +1,4 @@
+
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 
 import {MatPaginator} from '@angular/material/paginator';
@@ -5,8 +6,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { ProductService } from './../../core/Services/ProductService/product.service';
-import { LoadingComponent } from '../../core/loading/loading.component';
 import { ProductCreateComponent } from '../product-create/product-create.component';
+import { LoadingComponent } from './../../core/Components/loading/loading.component';
 import { Product } from 'src/app/core/Models/product.model';
 
 @Component({
