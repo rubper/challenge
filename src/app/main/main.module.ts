@@ -10,6 +10,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ]
 })
 export class MainModule { }

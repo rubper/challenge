@@ -8,8 +8,8 @@
         </mat-error>
         <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>
-            <mat-select formControlName="brand">
-            <mat-option *ngFor="let marca of ListaMarcas" value="marca">{{marca.name}}</mat-option>
+            <mat-select formControlName="brand" [(value)]="defaultBrand">
+            <mat-option *ngFor="let marca of ListaMarcas" [value]="marca">{{marca.name}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
@@ -17,7 +17,7 @@
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category">
-            <mat-option *ngFor="let categoria of ListaCategorias" value="categoria">{{categoria.name}}</mat-option>
+            <mat-option *ngFor="let categoria of ListaCategorias" [value]="categoria">{{categoria.name}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

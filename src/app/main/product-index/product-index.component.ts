@@ -21,16 +21,9 @@ export class ProductIndexComponent implements OnInit {
       'id',
       'brand',
       'category',
-      'variations',
       'name',
       'currentPrice',
-      'rawPrice',
-      'likesCount',
-      'discount',
-      'isNew',
-      'model',
-      'url',
-      'imageUrl'
+      'actions'
     ];
     
     dataSource = new MatTableDataSource<Product>([]);
@@ -53,6 +46,10 @@ export class ProductIndexComponent implements OnInit {
   }
   abrirDialogoNuevo(){
     var nuevoProductoDialogRef = this.nuevoProductoDialog.open(ProductCreateComponent);
+  }
+
+  abrirDialogoEditar(producto : Product){
+    var nuevoProductoDialogRef = this.nuevoProductoDialog.open(ProductCreateComponent,{data: producto});
   }
 
 }
