@@ -21,12 +21,12 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 export class ProductIndexComponent implements OnChanges {
   //Por tanto, recibe info usando Input
   @Input()
-  products: Product[] = []; //un listado de productos
+  products?: Product[] = []; //un listado de productos
   //Y envía info usando Output
   @Output()
   productDetail = new EventEmitter<number>(); //Envía un id al consultar
   @Output()
-  productUpdate = new EventEmitter<Product>(); //Envía un id al actualizar
+  productUpdate = new EventEmitter<number>(); //Envía un id al actualizar
   @Output()
   productDelete = new EventEmitter<Product>(); //Envía un producto al eliminar
   //Las columnas que serán utilizadas en la tabla
@@ -43,7 +43,6 @@ export class ProductIndexComponent implements OnChanges {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     constructor(
-      private productService : ProductService,
       private cargandoDialog : MatDialog
     ) { 
         this.cargandoDialog.open(MatProgressSpinner);
@@ -54,6 +53,7 @@ export class ProductIndexComponent implements OnChanges {
     const { products } = changes;
     if(products) {
       this.dataSource.data = products.currentValue;
+      this.cargandoDialog.closeAll();
     }
   }
 

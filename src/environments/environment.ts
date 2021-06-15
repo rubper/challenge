@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://drf-products-api.herokuapp.com/api'
+  apiUrl: 'https://drf-products-api.herokuapp.com/api/'
 };
 
 /*

@@ -9,16 +9,15 @@
         <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>
             <input type="text"
-           placeholder="Ingresa o busca una marca..."
-           matInput
-           formControlName="brand"
+            placeholder="Ingresa o busca una marca..."
+            matInput
+            formControlName="brand"
             [matAutocomplete]="brand">
             <mat-autocomplete
             #brand="matAutocomplete" 
-            formControlName="brand" 
             [displayWith]="displayFn">
                 <mat-option 
-                *ngFor="let marca of ListaMarcas | async" 
+                *ngFor="let marca of filteredBrands | async" 
                 [value]="marca">
                 {{marca.name}}
                 </mat-option>
@@ -35,10 +34,9 @@
             [matAutocomplete]="category">
             <mat-autocomplete
             #category="matAutocomplete" 
-            formControlName="category" 
             [displayWith]="displayFn">
                 <mat-option 
-                *ngFor="let cat of ListaCategorias | async" 
+                *ngFor="let cat of filteredCategories | async" 
                 [value]="cat">
                 {{cat.name}}
                 </mat-option>

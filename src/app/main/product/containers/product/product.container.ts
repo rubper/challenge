@@ -18,7 +18,7 @@ import { Product } from 'src/app/core/Models/product.model';
   templateUrl: './product.container.html',
   styleUrls: ['./product.container.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductContainer implements OnInit {
   //atributo de la clase donde se almacena la respuesta del servidor api
   result? : Result<Product> = undefined;
 
@@ -112,9 +112,9 @@ export class ProductComponent implements OnInit {
   }
 
   //actualiza un producto
-  updateProduct(producto: Product): void {
-    //subscribirse al servicio que modifica un objeto, usa el observador definido al inicio
-    this.productService.updateObject(producto).subscribe(this.updateProductObserver);
+  updateProduct(id: number): void {
+    //subscribirse al servicio que trae un objeto, todavia no se modifica, usa el observador definido al inicio
+    this.productService.getObject(id).subscribe(this.updateProductObserver);
   }
 
   //elimina un producto
@@ -181,9 +181,7 @@ export class ProductComponent implements OnInit {
       width: '600px',
     });
     //subscribirse al observable obtenido de cerrar el dialogo
-    dialogoFormRef.afterClosed().subscribe({
-      //caso exito (recibe id) del dialogo
-      next: (id? : number) => {
+    dialogoFormRef.afterClosed().subscribe((id? : number) => {
         //si el id no es undefined
         if(id) {
           //subscribirse al servicio de eliminacion de producto
@@ -204,8 +202,6 @@ export class ProductComponent implements OnInit {
             }
           )
         }
-      },
-      error: () => {}
      });
 
   }

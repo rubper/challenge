@@ -41,6 +41,8 @@ export class ProductFormComponent implements OnInit {
 
   //al inicializar
   ngOnInit(): void {
+    //inicializar los valores del formulario y sus validadores
+    this.inicializarForm();
     //subscribirse al servicio que obtiene las marcas (se obtiene un result)
     this.brandService.getObjects().subscribe( (result : Result<Brand>) => {
       //almacenar el listado del result en ListaMarcas
@@ -77,8 +79,6 @@ export class ProductFormComponent implements OnInit {
       map((value) => (typeof value === 'string' ? value : value.name)),
       map((name) => (name ? this.filterCategories(name, this.ListaCategorias) : this.ListaCategorias.slice()))
     );
-    //inicializar los valores del formulario y sus validadores
-    this.inicializarForm();
     //si se esta recibiendo un producto por inyeccion
     if (this.product) {
       //llenar el form con los datos del producto ingresado

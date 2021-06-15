@@ -15,16 +15,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { ProductComponent } from './containers/product/product.container';
+import { ProductContainer } from './containers/product/product.container';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
   declarations: [
     ProductIndexComponent,
     ProductFormComponent,
-    ProductComponent,
+    ProductContainer,
     ProductDetailComponent,
     ProductDeleteComponent
   ],
@@ -40,7 +41,8 @@ import { ProductDeleteComponent } from './components/product-delete/product-dele
     ReactiveFormsModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatAutocompleteModule
   ]
 })
 export class ProductModule { }

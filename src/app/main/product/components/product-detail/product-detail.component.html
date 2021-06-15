@@ -1,1 +1,14 @@
-<p>product-detail works!</p>
+{{ product.name }}<br>
+{{ product.brand?.name }}<br>
+{{ product.category?.name }}<br>
+{{ product.model }}<br>
+{{ product.currentPrice }}<br>
+{{ product.rawPrice }}<br>
+  <button
+    [mat-dialog-close]="{ editado: true }">
+    Editar
+  </button>
+  <button 
+    (click)="close()">
+    Cerrar
+  </button>

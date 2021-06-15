@@ -1,5 +1,3 @@
-<button mat-raised-button color="primary" (click)="abrirDialogoNuevo()">AgregarNuevo</button>
-
 <table mat-table [dataSource]="dataSource">
 
   <!-- id Column -->
@@ -35,7 +33,7 @@
       <!-- currentPrice Column -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" (click)="abrirDialogoEditar(element)"><mat-icon>edit</mat-icon></button></td>
+    <td mat-cell *matCellDef="let element"><button mat-icon-button color="primary" (click)="productDetail.emit(element.id)"><mat-icon>visibility</mat-icon></button> <button mat-icon-button color="primary" (click)="productUpdate.emit(element.id)"><mat-icon>edit</mat-icon></button><button mat-icon-button color="primary" (click)="productDelete.emit(element)"><mat-icon>delete</mat-icon></button></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="titulosColumnas"></tr>
