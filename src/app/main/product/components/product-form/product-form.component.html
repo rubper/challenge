@@ -1,5 +1,5 @@
 <mat-dialog-content>
-<form [formGroup]="productForm">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div>
         <mat-error>
             <ng-container *ngIf="brandControl.errors?.required">
@@ -8,17 +8,41 @@
         </mat-error>
         <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>
-            <mat-select formControlName="brand" [(value)]="defaultBrand">
-            <mat-option *ngFor="let marca of ListaMarcas" [value]="marca">{{marca.name}}</mat-option>
-            </mat-select>
+            <input type="text"
+           placeholder="Ingresa o busca una marca..."
+           matInput
+           formControlName="brand"
+            [matAutocomplete]="brand">
+            <mat-autocomplete
+            #brand="matAutocomplete" 
+            formControlName="brand" 
+            [displayWith]="displayFn">
+                <mat-option 
+                *ngFor="let marca of ListaMarcas | async" 
+                [value]="marca">
+                {{marca.name}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
-            <mat-select formControlName="category">
-            <mat-option *ngFor="let categoria of ListaCategorias" [value]="categoria">{{categoria.name}}</mat-option>
-            </mat-select>
+            <input type="text"
+           placeholder="Ingresa o busca una categoria..."
+           matInput
+           formControlName="category"
+            [matAutocomplete]="category">
+            <mat-autocomplete
+            #category="matAutocomplete" 
+            formControlName="category" 
+            [displayWith]="displayFn">
+                <mat-option 
+                *ngFor="let cat of ListaCategorias | async" 
+                [value]="cat">
+                {{cat.name}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
         <div>
@@ -96,3 +120,4 @@
     -->
 </form>
 </mat-dialog-content>
+

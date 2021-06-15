@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
-import { ProductIndexComponent } from './product-index/product-index.component';
-import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductIndexComponent } from './product/components/product-index/product-index.component';
+import { ProductFormComponent } from './product/components/product-form/product-form.component';
 
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -16,14 +16,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import { IndexComponent } from './index/index.component';
 
 
 
 @NgModule({
   declarations: [
-    ProductIndexComponent,
-    ProductCreateComponent,
-    LoadingComponent
+    LoadingComponent,
+    IndexComponent
   ],
   imports: [
     CommonModule,

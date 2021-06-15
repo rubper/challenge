@@ -1,7 +1,7 @@
-import { ProductIndexComponent } from './product-index/product-index.component';
+import { ProductIndexComponent } from './product/components/product-index/product-index.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductFormComponent } from './product/components/product-form/product-form.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'agregar',
-    component: ProductCreateComponent
+    component: ProductFormComponent
   },
 ];
 

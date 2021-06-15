@@ -1,0 +1,12 @@
+<button
+  color="primary"
+  mat-raised-button
+  (click)="openForm()">
+  Add Product
+</button>
+<app-product-index
+  [products]="result?.results"
+  (productDetail)="detailProduct($event)"
+  (productUpdate)="updateProduct($event)"
+  (productDelete)="deleteProduct($event)">
+</app-product-index>

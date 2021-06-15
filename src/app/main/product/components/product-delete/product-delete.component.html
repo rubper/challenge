@@ -1,0 +1,21 @@
+<div mat-dialog-content>
+  <p>
+    Se eliminará el producto {{product.name}} ¿Deseas continuar?
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    color="accent"
+    cdkFocusInitial
+    mat-dialog-close>
+    NO
+  </button>
+  <button
+    type="submit"
+    color="primary"
+    mat-raised-button
+    [mat-dialog-close]="product.id">
+    Sí
+  </button>
+</div>
