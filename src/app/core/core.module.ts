@@ -6,13 +6,11 @@ import { BrandService } from './Services/BrandService/brand.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingComponent } from './Components/loading/loading.component';
 
 
 
 @NgModule({
   declarations: [
-    LoadingComponent
   ],
   imports: [
     CommonModule,

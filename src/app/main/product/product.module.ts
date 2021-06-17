@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -42,7 +43,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatCheckboxModule,
     MatSelectModule,
     MatIconModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    SharedModule
   ]
 })
 export class ProductModule { }

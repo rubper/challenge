@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductContainer } from './product.container';
+import { CategoryDeleteComponent } from './category-delete.component';
 
-describe('ProductContainer', () => {
-  let component: ProductContainer;
-  let fixture: ComponentFixture<ProductContainer>;
+describe('CategoryDeleteComponent', () => {
+  let component: CategoryDeleteComponent;
+  let fixture: ComponentFixture<CategoryDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductContainer ]
+      declarations: [ CategoryDeleteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductContainer);
+    fixture = TestBed.createComponent(CategoryDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,6 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 
+import { LoadingComponent } from '../../../../shared/loading/loading.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
 import { ProductFormComponent } from './../../components/product-form/product-form.component';
 import { ProductDeleteComponent } from './../../components/product-delete/product-delete.component';
@@ -32,7 +33,8 @@ export class ProductContainer implements OnInit {
       this.result = resultado;
     },
     //caso error
-    error: () => {}//pendiente de implementar
+    error: () => {},//pendiente de implementar
+    complete: () => this.cargandoDialog.closeAll()
   }
 
   //--get producto / observador parcial
@@ -79,8 +81,10 @@ export class ProductContainer implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private matDialog : MatDialog
-    ) { }
+    private matDialog : MatDialog,
+    private cargandoDialog : MatDialog
+    ) {
+    }
 
   //al iniciar el componente
   ngOnInit(): void {
@@ -92,6 +96,7 @@ export class ProductContainer implements OnInit {
 
   //trae los productos
   getProducts(pageEvent: PageEvent | number): void{
+    this.cargandoDialog.open(LoadingComponent, {disableClose:true});
     //Obtener el número de página: Sí el tipo de la variable page event es number
     //  entonces asignar la variable, caso contrario asignar el atributo index de la variable
     //  sumar uno ya que es un índice

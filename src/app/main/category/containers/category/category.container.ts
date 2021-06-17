@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  templateUrl: './category.container.html',
+  styleUrls: ['./category.container.scss']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryContainer implements OnInit {
 
   constructor() { }
 

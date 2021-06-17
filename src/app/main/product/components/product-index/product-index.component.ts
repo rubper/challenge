@@ -5,11 +5,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-
-import { ProductService } from './../../../../core/Services/ProductService/product.service';
-import { ProductFormComponent } from '../product-form/product-form.component';
 import { Product } from 'src/app/core/Models/product.model';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-product-index',
@@ -43,9 +39,7 @@ export class ProductIndexComponent implements OnChanges {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     constructor(
-      private cargandoDialog : MatDialog
     ) { 
-        this.cargandoDialog.open(MatProgressSpinner);
     }
 
   ngOnChanges(changes : SimpleChanges): void {
@@ -53,7 +47,6 @@ export class ProductIndexComponent implements OnChanges {
     const { products } = changes;
     if(products) {
       this.dataSource.data = products.currentValue;
-      this.cargandoDialog.closeAll();
     }
   }
 
