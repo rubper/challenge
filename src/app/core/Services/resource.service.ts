@@ -34,7 +34,7 @@ export abstract class ResourceService <T extends Resource> {
       return this.httpClient.post<T>(`${this.API_URL}`, resource);
     }
   
-    deleteProduct(id: number): Observable<HttpResponse<never>> {
+    deleteObject(id: number): Observable<HttpResponse<never>> {
       return this.httpClient.delete<never>(`${this.API_URL}${id}`,{ observe: 'response' });
     }
   }

@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+table {
+    margin: 0 auto;
+}
+mat-paginator{
+    margin: 0 auto;
+    padding-bottom: 6%;
+
+}
+
+.mat-cell {
+    min-width: 100px;
+    max-width: 350px;
+    text-overflow: ellipsis;
+    text-align: center;
+    border-right: 1px solid rgba($color: mat-color($mat-grey,300), $alpha: 0.50);
+}
+
+.mat-header-cell {
+    text-align: center;
+}
+
+.header{
+    margin: 20px auto;
+}
+
+.header h1{
+    text-align: center;
+    font-weight: 500;
+    color: mat-color($mat-green,800);
+}
+
+
+.table-brand{
+    background-color: rgba($color: mat-color($mat-grey,100), $alpha: 0.25);
+}

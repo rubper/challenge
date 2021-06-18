@@ -2,7 +2,7 @@ import { PartialObserver } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 
 import { LoadingComponent } from '../../../../shared/loading/loading.component';
@@ -22,6 +22,7 @@ import { Product } from 'src/app/core/Models/product.model';
 export class ProductContainer implements OnInit {
   //atributo de la clase donde se almacena la respuesta del servidor api
   result? : Result<Product> = undefined;
+  cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
 
   //---observadores---
 
@@ -64,7 +65,9 @@ export class ProductContainer implements OnInit {
         )
     },
     //caso error
-    error: () => {}//pendiente de implementar
+    error: () => {},//pendiente de implementar
+    //verifica si cargandoDialogRef no esta vacio, y si no lo esta cierra el dialogo
+    complete: () => {if(this.cargandoDialogRef){this.cargandoDialogRef.close()}}
   }
 
   //--actualizar producto / observador parcial
@@ -74,7 +77,9 @@ export class ProductContainer implements OnInit {
       this.openForm(producto);
     },
     //caso de error
-    error: () => {}
+    error: () => {},
+    //verifica si cargandoDialogRef no esta vacio, y si no lo esta cierra el dialogo
+    complete: () => {if(this.cargandoDialogRef){this.cargandoDialogRef.close()}}
   }
 
   //---constructor---
@@ -112,12 +117,14 @@ export class ProductContainer implements OnInit {
 
   //trae un producto
   detailProduct(id: number): void {
+    this.cargandoDialogRef = this.cargandoDialog.open(LoadingComponent, {disableClose:true});
     //subscribirse al servicio que trae un objeto, usa el observador definido al inicio
     this.productService.getObject(id).subscribe(this.detailProductObserver);
   }
 
   //actualiza un producto
   updateProduct(id: number): void {
+    this.cargandoDialogRef = this.cargandoDialog.open(LoadingComponent, {disableClose:true});
     //subscribirse al servicio que trae un objeto, todavia no se modifica, usa el observador definido al inicio
     this.productService.getObject(id).subscribe(this.updateProductObserver);
   }
@@ -190,7 +197,7 @@ export class ProductContainer implements OnInit {
         //si el id no es undefined
         if(id) {
           //subscribirse al servicio de eliminacion de producto
-          this.productService.deleteProduct(id).subscribe(
+          this.productService.deleteObject(id).subscribe(
             {
               //caso exito
               next: (response: HttpResponse<never>) => {

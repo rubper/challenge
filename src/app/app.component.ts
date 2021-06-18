@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'challenge';
+  shouldRun = true;
+  changeRun() : void {
+    if(this.shouldRun){
+      this.shouldRun = false;
+    } else {
+      this.shouldRun = true;
+    }
+  }
 }

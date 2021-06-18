@@ -1,0 +1,12 @@
+<button
+  color="primary"
+  mat-fab
+  (click)="openForm()">
+  <mat-icon>add</mat-icon>
+</button>
+<app-brand-index
+  [brands]="result?.results"
+  (brandDetail)="detailBrand($event)"
+  (brandUpdate)="updateBrand($event)"
+  (brandDelete)="deleteBrand($event)">
+</app-brand-index>

@@ -1,1 +1,12 @@
-<p>category works!</p>
+<button
+  color="primary"
+  mat-fab
+  (click)="openForm()">
+  <mat-icon>add</mat-icon>
+</button>
+<app-category-index
+  [categories]="result?.results"
+  (categoryDetail)="detailCategory($event)"
+  (categoryUpdate)="updateCategory($event)"
+  (categoryDelete)="deleteCategory($event)">
+</app-category-index>

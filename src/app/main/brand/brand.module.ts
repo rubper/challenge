@@ -6,7 +6,19 @@ import { BrandIndexComponent } from './components/brand-index/brand-index.compon
 import { BrandFormComponent } from './components/brand-form/brand-form.component';
 import { BrandDetailComponent } from './components/brand-detail/brand-detail.component';
 import { BrandDeleteComponent } from './components/brand-delete/brand-delete.component';
-import { BrandComponent } from './containers/brand/brand.component';
+import { BrandContainer } from './containers/brand/brand.container';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -15,11 +27,23 @@ import { BrandComponent } from './containers/brand/brand.component';
     BrandFormComponent,
     BrandDetailComponent,
     BrandDeleteComponent,
-    BrandComponent
+    BrandContainer
   ],
   imports: [
     CommonModule,
-    BrandRoutingModule
+    BrandRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    SharedModule
   ]
 })
 export class BrandModule { }

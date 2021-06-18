@@ -1,4 +1,23 @@
 <mat-toolbar color="primary">
-<span>Mi aplicacion</span>
+<button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+<span><a mat-button [routerLink]="['/']">Challenge Angular</a></span>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="content-container">
+  <mat-sidenav #sidenav mode="over" role="directory">
+    <mat-nav-list>
+        <mat-list-item>
+            <mat-icon matListIcon>folder</mat-icon>
+            <h3 matLine>Gestion de productos con</h3>
+            <span matLine>Angular v11</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/product']" (click)="sidenav.toggle()" >Products</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/category']" (click)="sidenav.toggle()">Categories</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/brand']" (click)="sidenav.toggle()">Brands</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content role="main" class="bg-zig-zag"><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>
+
