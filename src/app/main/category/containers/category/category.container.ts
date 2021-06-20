@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { PartialObserver } from 'rxjs';
 
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { Result } from 'src/app/core/Models/result.model';
 import { Category } from './../../../../core/Models/category.model';
@@ -25,6 +25,7 @@ export class CategoryContainer implements OnInit {
   result? : Result<Category> = undefined;
   cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
   dataLength : number = 0;
+  @ViewChild('paginator') paginator!: MatPaginator;
 
   //---observadores---
 
@@ -138,17 +139,18 @@ export class CategoryContainer implements OnInit {
   openForm(category?: Category) {
     //abrir dialogo con componente de formulario de category
     const dialogoFormRef = this.matDialog.open(CategoryFormComponent, {
-      data: category,
-      width: '600px',
+      data: category
     });
     //subscribirse al observable obtenido de cerrar el dialogo
     dialogoFormRef.afterClosed().subscribe({
       //caso de exito, del category obtenido (puede darse el caso que no venga un category, ej. al cancelar)
-      next:(categoryDialogo?: Category)=>{
+      next:(categoryDialogo?)=>{
         //si el category obtenido no es undefined
         if(categoryDialogo){
           //y este tiene id (es decir, ya existe en el api)
           if(categoryDialogo.id){
+            if(typeof categoryDialogo.main !== "number")
+              categoryDialogo.main=categoryDialogo.main.id;
             //subscribirse al servicio que modifica un objeto
             this.categoryService.updateObject(categoryDialogo).subscribe({
               //caso de exito
@@ -162,10 +164,13 @@ export class CategoryContainer implements OnInit {
                 }
               },
               //caso de error
-              error: () => {}
+              error: () => {},
+              complete:()=> this.getCategories(this.paginator.pageIndex)
             })
           //en el caso de que no tenga id (es decir, no existe en api)
           } else {
+            if(typeof categoryDialogo.main !== "number")
+              categoryDialogo.main=categoryDialogo.main.id;
             //subscribirse al servicio que ingresa un nuevo category
             this.categoryService.postObject(categoryDialogo).subscribe(
               {
@@ -173,7 +178,8 @@ export class CategoryContainer implements OnInit {
                 next: (categoryNuevo : Category) => {
                   //agrega el nuevo category a la lista
                   this.result?.results.push(categoryNuevo)
-                }
+                },
+                complete:()=> this.getCategories(this.paginator.pageIndex)
               }
             )
           }

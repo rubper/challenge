@@ -192,7 +192,8 @@ export class ProductContainer implements OnInit {
                 next: (productoNuevo : Product) => {
                   //agrega el nuevo producto a la lista
                   this.result?.results.push(productoNuevo)
-                }
+                },
+                complete:()=> this.getProducts(this.paginator.pageIndex)
               }
             )
           }

@@ -29,7 +29,6 @@ export class ProductFormComponent implements OnInit {
   //observables de las listas
   filteredBrands: Observable<Brand[]> = of<Brand[]>([]);
   filteredCategories: Observable<Category[]> = of<Category[]>([]);
-  edit=false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,10 +41,8 @@ export class ProductFormComponent implements OnInit {
     ) {
       if(product){
         this.title=`Editando ${product.name}`;
-        this.edit=true;
       } else {
         this.title="Agregar nuevo producto"
-        this.edit=false;
       }
     }
 
