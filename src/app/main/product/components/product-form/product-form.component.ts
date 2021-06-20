@@ -25,9 +25,11 @@ export class ProductFormComponent implements OnInit {
   //listados
   ListaMarcas : Brand[] = [];
   ListaCategorias : Category[] = [];
+  title="";
   //observables de las listas
   filteredBrands: Observable<Brand[]> = of<Brand[]>([]);
   filteredCategories: Observable<Category[]> = of<Category[]>([]);
+  edit=false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +39,15 @@ export class ProductFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public product : Product,
     //?
     private dialogRef: MatDialogRef<ProductFormComponent, Product>
-    ) { }
+    ) {
+      if(product){
+        this.title=`Editando ${product.name}`;
+        this.edit=true;
+      } else {
+        this.title="Agregar nuevo producto"
+        this.edit=false;
+      }
+    }
 
   //al inicializar
   ngOnInit(): void {
@@ -88,18 +98,19 @@ export class ProductFormComponent implements OnInit {
 
   inicializarForm(){
     this.productForm = this.formBuilder.group({
-      brand: [null, Validators.required],
-      category: [null, Validators.required],
-      variations: ['', Validators.required],
+      id:[null],
+      brand: [null],
+      category: [null],
+      variations: [''],
       name: ['', [Validators.required,Validators.minLength(4)]],
-      currentPrice: ['', Validators.required],
-      rawPrice: ['', Validators.required],
-      likesCount: [0, [Validators.required,Validators.min(0)]],
-      discount: [0.00, [Validators.required,Validators.min(0.00)]],
+      currentPrice: ['', [Validators.required,Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
+      rawPrice: ['', [Validators.required,Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
+      likesCount: [0, Validators.min(0)],
+      discount: [0.00, [Validators.required,Validators.min(0),Validators.max(2147483647),Validators.pattern("^[0-9]*$")]],
       isNew: [true, Validators.required],
-      model: ['', Validators.required],
-      url: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      model: ['', [Validators.required,Validators.maxLength(9)]],
+      url: [''],
+      imageUrl: [''],
     });
   }
 

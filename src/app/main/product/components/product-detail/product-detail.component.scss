@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+.header {
+    max-width: 300px;
+    text-align: center;
+    font-weight: 600;
+    color: mat-color($mat-green,800);
+}
+
+mat-dialog-content{
+    display: flex;
+}
+
+.img-container{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10%;
+}
+
+.product-image{
+    margin: 30px;
+    max-height: 300px;
+}
+
+.button{
+    margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    mat-dialog-content{
+        display: block;
+    }
+  }

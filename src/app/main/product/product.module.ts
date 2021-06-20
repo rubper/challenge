@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +21,8 @@ import { ProductContainer } from './containers/product/product.container';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -44,6 +47,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSelectModule,
     MatIconModule,
     MatAutocompleteModule,
+    MatListModule,
+    MatDividerModule,
+    MatCardModule,
     SharedModule
   ]
 })

@@ -1,9 +1,9 @@
 import { PartialObserver } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 
 import { LoadingComponent } from '../../../../shared/loading/loading.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
@@ -20,6 +20,7 @@ import { Product } from 'src/app/core/Models/product.model';
   styleUrls: ['./product.container.scss']
 })
 export class ProductContainer implements OnInit {
+  @ViewChild('paginator') paginator!: MatPaginator;
   //atributo de la clase donde se almacena la respuesta del servidor api
   result? : Result<Product> = undefined;
   cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
@@ -49,7 +50,8 @@ export class ProductContainer implements OnInit {
           //usando componente detalle
           ProductDetailComponent,
           //config
-          { data : producto }
+          { data : producto,
+            autoFocus: false}
           );
           //luego de cerrar el dialogo, subscribirse
         dialogoDetalleRef.afterClosed().subscribe(
@@ -81,7 +83,8 @@ export class ProductContainer implements OnInit {
     //caso de error
     error: () => {},
     //verifica si cargandoDialogRef no esta vacio, y si no lo esta cierra el dialogo
-    complete: () => {if(this.cargandoDialogRef){this.cargandoDialogRef.close()}}
+    complete: () => {
+      if(this.cargandoDialogRef){this.cargandoDialogRef.close()}}
   }
 
   //---constructor---
@@ -142,18 +145,23 @@ export class ProductContainer implements OnInit {
   openForm(producto?: Product) {
     //abrir dialogo con componente de formulario de producto
     const dialogoFormRef = this.matDialog.open(ProductFormComponent, {
-      data: producto,
-      width: '600px',
+      data: producto
     });
     //subscribirse al observable obtenido de cerrar el dialogo
     dialogoFormRef.afterClosed().subscribe({
       //caso de exito, del producto obtenido (puede darse el caso que no venga un producto, ej. al cancelar)
-      next:(productoDialogo?: Product)=>{
+      next:(productoDialogo? : Product)=>{
         //si el producto obtenido no es undefined
         if(productoDialogo){
           //y este tiene id (es decir, ya existe en el api)
           if(productoDialogo.id){
-            //subscribirse al servicio que modifica un objeto
+            if(productoDialogo.brand)
+              if(typeof productoDialogo.brand !== "number")
+                productoDialogo.brand=productoDialogo.brand.id;
+            if(productoDialogo.category)
+              if(typeof productoDialogo.category !== "number")
+                productoDialogo.category=productoDialogo.category.id;
+              //subscribirse al servicio que modifica un objeto
             this.productService.updateObject(productoDialogo).subscribe({
               //caso de exito
               next: (productoActualizado : Product) => {
@@ -166,10 +174,17 @@ export class ProductContainer implements OnInit {
                 }
               },
               //caso de error
-              error: () => {}
+              error: () => {},
+              complete:()=> this.getProducts(this.paginator.pageIndex)
             })
           //en el caso de que no tenga id (es decir, no existe en api)
           } else {
+            if(productoDialogo.brand)
+              if(typeof productoDialogo.brand !== "number")
+                productoDialogo.brand=productoDialogo.brand.id;
+                if(productoDialogo.category)
+                  if(typeof productoDialogo.category !== "number")
+                    productoDialogo.category=productoDialogo.category.id;
             //subscribirse al servicio que ingresa un nuevo producto
             this.productService.postObject(productoDialogo).subscribe(
               {
