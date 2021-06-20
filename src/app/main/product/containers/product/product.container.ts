@@ -109,7 +109,7 @@ export class ProductContainer implements OnInit {
     //  sumar uno ya que es un índice
     const numero = (typeof pageEvent === "number" ? pageEvent : pageEvent.pageIndex) + 1;
     //definir el tamaño de página
-    let pageSize = 20;
+    let pageSize = 10;
     //Si la variable pageEvent no es un número, utilizar el tamaño de página del objeto pageEvent
     //???? if(pageEvent instanceof PageEvent) { pageSize = pageEvent.pageSize };
     if(typeof pageEvent !== "number") { pageSize = pageEvent.pageSize };
