@@ -23,6 +23,7 @@ export class ProductContainer implements OnInit {
   //atributo de la clase donde se almacena la respuesta del servidor api
   result? : Result<Product> = undefined;
   cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
+  dataLength : number = 0;
 
   //---observadores---
 
@@ -32,6 +33,7 @@ export class ProductContainer implements OnInit {
     next: (resultado : Result<Product>)=> {
       //almacenar el resultado en el atributo de clase correspondiente
       this.result = resultado;
+      this.dataLength = resultado.count;
     },
     //caso error
     error: () => {},//pendiente de implementar
