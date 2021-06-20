@@ -149,8 +149,9 @@ export class CategoryContainer implements OnInit {
         if(categoryDialogo){
           //y este tiene id (es decir, ya existe en el api)
           if(categoryDialogo.id){
-            if(typeof categoryDialogo.main !== "number")
-              categoryDialogo.main=categoryDialogo.main.id;
+            if(categoryDialogo.main)
+              if(typeof categoryDialogo.main !== "number")
+                categoryDialogo.main=categoryDialogo.main.id;
             //subscribirse al servicio que modifica un objeto
             this.categoryService.updateObject(categoryDialogo).subscribe({
               //caso de exito
@@ -169,8 +170,9 @@ export class CategoryContainer implements OnInit {
             })
           //en el caso de que no tenga id (es decir, no existe en api)
           } else {
-            if(typeof categoryDialogo.main !== "number")
-              categoryDialogo.main=categoryDialogo.main.id;
+            if(categoryDialogo.main)
+              if(typeof categoryDialogo.main !== "number")
+                categoryDialogo.main=categoryDialogo.main.id;
             //subscribirse al servicio que ingresa un nuevo category
             this.categoryService.postObject(categoryDialogo).subscribe(
               {

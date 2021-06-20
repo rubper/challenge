@@ -12,7 +12,7 @@
 </app-product-index>
 <mat-paginator 
   #paginator
-  [pageSizeOptions]="[5, 10, 20]" 
+  [pageSizeOptions]="[5, 10, 20, 100]" 
   [pageSize]="10"
   [length]="dataLength"
   (page)="getProducts($event)"

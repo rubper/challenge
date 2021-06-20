@@ -1,1 +1,21 @@
-<p>category-delete works!</p>
+<div mat-dialog-content>
+  <p>
+    Se eliminará la categoria {{category.name}} ¿Deseas continuar?
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    color="accent"
+    cdkFocusInitial
+    mat-dialog-close>
+    NO
+  </button>
+  <button
+    type="submit"
+    color="primary"
+    mat-raised-button
+    [mat-dialog-close]="category.id">
+    Sí
+  </button>
+</div>

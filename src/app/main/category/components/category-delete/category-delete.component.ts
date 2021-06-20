@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Category } from './../../../../core/Models/category.model';
 
 @Component({
   selector: 'app-category-delete',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryDeleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public category: Category) { }
 
   ngOnInit(): void {
   }
