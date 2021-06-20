@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -42,6 +43,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatCheckboxModule,
     MatSelectModule,
     MatIconModule,
+    MatListModule,
     MatAutocompleteModule,
     SharedModule
   ]
