@@ -4,3 +4,8 @@ button {
     bottom:5%;
     right: 5%;
 }
+mat-paginator{
+    max-width: max-content;
+    margin: 0 auto;
+    background-color: rgba($color: #FFF, $alpha: 0);
+}

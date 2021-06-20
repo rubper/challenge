@@ -10,3 +10,11 @@
   (categoryUpdate)="updateCategory($event)"
   (categoryDelete)="deleteCategory($event)">
 </app-category-index>
+<mat-paginator 
+  #paginator
+  [pageSizeOptions]="[5, 10, 20]" 
+  [pageSize]="10"
+  [length]="dataLength"
+  (page)="getCategories($event)"
+  showFirstLastButtons
+></mat-paginator>

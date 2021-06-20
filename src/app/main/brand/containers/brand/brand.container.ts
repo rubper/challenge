@@ -23,6 +23,7 @@ import { BrandFormComponent } from '../../components/brand-form/brand-form.compo
 export class BrandContainer implements OnInit {
   result? : Result<Brand> = undefined;
   cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
+  dataLength : number = 0;
 
   //---observadores---
 
@@ -31,6 +32,7 @@ export class BrandContainer implements OnInit {
     next: (resultado : Result<Brand>)=> {
       //almacenar el resultado en el atributo de clase correspondiente
       this.result = resultado;
+      this.dataLength = resultado.count;
     },
     //caso error
     error: () => {},//pendiente de implementar
@@ -92,7 +94,7 @@ export class BrandContainer implements OnInit {
     this.cargandoDialog.open(LoadingComponent, {disableClose:true});
     //obtener numero de pagina, sumar uno ya que se obtiene de un índice
     const numero = (typeof pageEvent === "number" ? pageEvent : pageEvent.pageIndex) + 1;
-    let pageSize = 20; //tamano de pagina
+    let pageSize = 10; //tamano de pagina
     //utilizar el tamaño de página del objeto pageEvent cuando sea un Page Event
     if(typeof pageEvent !== "number") { pageSize = pageEvent.pageSize };
     this.brandService.getObjects(numero, pageSize).subscribe(this.getBrandsObserver);

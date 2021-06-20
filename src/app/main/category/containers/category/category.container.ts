@@ -24,6 +24,7 @@ export class CategoryContainer implements OnInit {
   //atributo de la clase donde se almacena la respuesta del servidor api
   result? : Result<Category> = undefined;
   cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
+  dataLength : number = 0;
 
   //---observadores---
 
@@ -33,6 +34,7 @@ export class CategoryContainer implements OnInit {
     next: (resultado : Result<Category>)=> {
       //almacenar el resultado en el atributo de clase correspondiente
       this.result = resultado;
+      this.dataLength = resultado.count;
     },
     //caso error
     error: () => {},//pendiente de implementar
@@ -105,7 +107,7 @@ export class CategoryContainer implements OnInit {
     this.cargandoDialog.open(LoadingComponent, {disableClose:true});
     //numero y tamano de pagina
     const numero = (typeof pageEvent === "number" ? pageEvent : pageEvent.pageIndex) + 1;
-    let pageSize = 20;
+    let pageSize = 10;
     if(typeof pageEvent !== "number") { pageSize = pageEvent.pageSize };
     //subscribirse al servicio que trae las categories, usa el observador definido al inicio
     this.categoryService.getObjects(numero, pageSize).subscribe(this.getCategoriesObserver);

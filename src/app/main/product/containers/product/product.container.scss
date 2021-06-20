@@ -6,5 +6,7 @@ button {
 }
 
 mat-paginator{
-    padding-bottom: 7%;
+    max-width: max-content;
+    margin: 0 auto;
+    background-color: rgba($color: #FFF, $alpha: 0);
 }
