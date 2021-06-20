@@ -10,3 +10,10 @@
   (productUpdate)="updateProduct($event)"
   (productDelete)="deleteProduct($event)">
 </app-product-index>
+<mat-paginator 
+  [pageSizeOptions]="[5, 10, 20]" 
+  [pageSize]="10"
+  [length]="dataLength"
+  (page)="getCategorias($event)"
+  showFirstLastButtons
+></mat-paginator>
