@@ -1,1 +1,44 @@
-<p>brand-form works!</p>
+<title mat-dialog-title >{{title}}</title>
+<mat-dialog-content>
+    <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+        <input
+        type="hidden"
+        formControlName="id">
+        <div>
+            <mat-error>
+                <ng-container *ngIf="nameControl.errors?.required">
+                    El nombre es requerido.<br>
+                </ng-container>
+                <ng-container *ngIf="nameControl.errors?.minlength">
+                    Debe ingresar al menos 3 caracteres.
+                </ng-container>
+                <ng-container *ngIf="nameControl.errors?.maxlength">
+                    El nombre no debe sobrepasar los 150 caracteres.
+                </ng-container>
+            </mat-error>
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" formControlName="name">
+            </mat-form-field>
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button
+    mat-button
+    color="accent"
+    cdkFocusInitial
+    (click)="close()">
+    Close
+  </button>
+  <button
+    type="submit"
+    color="primary"
+    mat-raised-button
+    (click)="onSubmit()"
+    [disabled]="brandForm.invalid">
+    Save
+  </button>
+</div>

@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -43,6 +44,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatSelectModule,
     MatAutocompleteModule,
     MatIconModule,
+    MatListModule,
     SharedModule
   ]
 })

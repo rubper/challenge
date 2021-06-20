@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { PartialObserver } from 'rxjs';
 
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { Result } from 'src/app/core/Models/result.model';
 import { Brand } from './../../../../core/Models/brand.model';
@@ -24,6 +24,7 @@ export class BrandContainer implements OnInit {
   result? : Result<Brand> = undefined;
   cargandoDialogRef? : MatDialogRef<LoadingComponent> = undefined;
   dataLength : number = 0;
+  @ViewChild('paginator') paginator!: MatPaginator;
 
   //---observadores---
 
@@ -124,8 +125,7 @@ export class BrandContainer implements OnInit {
   //abre el formulario (brand puede no venir en caso de ser nuevo brand)
   openForm(brand?: Brand) {
     const dialogoFormRef = this.matDialog.open(BrandFormComponent, {
-      data: brand,
-      width: '600px',
+      data: brand
     });
     //subscribirse al observable obtenido de cerrar el dialogo
     dialogoFormRef.afterClosed().subscribe({
@@ -143,7 +143,8 @@ export class BrandContainer implements OnInit {
                   if(this.result) this.result.results[indice] = brandActualizado;
                 }
               },
-              error: () => {}
+              error: () => {},
+              complete:()=> this.getBrands(this.paginator.pageIndex)
             })
           //en el caso de que no tenga id (es decir, no existe en api)
           } else {
@@ -153,7 +154,8 @@ export class BrandContainer implements OnInit {
                 next: (brandNuevo : Brand) => {
                   //agrega el nuevo brand a la lista
                   this.result?.results.push(brandNuevo)
-                }
+                },
+                complete:()=> this.getBrands(this.paginator.pageIndex)
               }
             )
           }
